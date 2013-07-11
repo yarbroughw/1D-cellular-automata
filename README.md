@@ -14,3 +14,5 @@ The program does not yet have a proper user interface - all input is provided th
 "ruleNumber" - The index number for the ruleSet. The process of interpreting this value is based upon the Wolfram Codes system for ECA, but expanded out to an arbitrary value depth and neighborhood.
 
 "randomStart" - A simple boolean for randomizing the initial rows of each CA. If false, the program will provide the value given in "valueDepth" to the center-most cell in the topmost row. Both of these modes use the number of radii in "neighborhood" as the number of rows to alter for the CA's initial state.
+
+To save an automata to jpg, hit "s" while it renders. This will cause the automata to be saved to an image as soon as it completes the rendering process. (You'll also need to modify the filepath to fit your own directory system.)
