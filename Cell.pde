@@ -25,16 +25,15 @@ class Cell
 
 		if (value == 0)
 		{
-			fill(0, 0, 255);
+			fill(0);
 		}
 		else
 		{    
-			int fillValue = (value*255) / valueDepth;
+			int fillValue = value * 255 / valueDepth;
 			fillValue = (fillValue * -1) + 255;
-			fill(0,fillValue,0);
+			fill(fillValue);
 		}
 
 		rect(x, y, size, size);
 	}
 }
-

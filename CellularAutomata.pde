@@ -1,8 +1,10 @@
-int scale = 2;
-int valueDepth = 2;
+int scale = 5;
+int valueDepth = 3;
 int[] neighborhood = { 1 };
-int ruleNumber = 30;
-boolean randomStart = false;
+long ruleNumber = 110;
+boolean randomStart = true;
+
+boolean saveAutomaton = false;
 
 RuleSet ruleSet;
 Grid grid;
@@ -19,6 +21,8 @@ void setup()
 	grid = new Grid(width/scale, height/scale, valueDepth);
 
 	automator = new Automator(neighborhood, ruleSet, grid, randomStart);
+
+        println("Total number of rules: " + automator.getTotalNumberOfRules());
 }
 
 void draw()
@@ -28,10 +32,41 @@ void draw()
   
 	if(automator.getRow() > grid.getRows())
 	{
+                if(saveAutomaton)
+                {
+                  
+                  String neighborhoodString = "";
+                  
+                  for(int i = 0; i < neighborhood.length; i++)
+                  {
+                            neighborhoodString += neighborhood[i];
+                  }
+                  
+                  String path = "/Users/willemyarbrough/Pictures/Photos/art/1Dautomata/";
+                  
+                  path += randomStart ? "randomstart/" : "basicstart/";
+                  
+                  String filename = "D" + valueDepth + "N" + neighborhoodString + "-R" + ruleNumber + ".jpg" + "-S" + scale;
+                  
+                  save(path + filename + ".jpg");
+                  println("Saved " + filename + "!");
+                  
+                  saveAutomaton = false;
+                }
+  
 		grid.clearGrid();
-		ruleNumber++;
+		ruleNumber = automator.getRandomRuleNum();
+                println(ruleNumber);
 		ruleSet = new RuleSet(ruleNumber, valueDepth);
 		automator = new Automator(neighborhood, ruleSet, grid, randomStart);
 	}
+}
+
+void keyPressed()
+{
+  if (keyCode == 's' || keyCode == 'S')
+  {
+    saveAutomaton = true;
+  }
 }
 

@@ -92,7 +92,7 @@ class Automator
 		}
 	}
 
-        public void middleCellOn(int row)
+        private void middleCellOn(int row)
         {
           int columns = grid.getColumns();
           int halfway = (columns - (columns % 2)) / 2;
@@ -103,7 +103,25 @@ class Automator
         {
                 return row;
         }
+        
+        public long getRandomRuleNum()
+        {
+                           
+                 return (long)random(getTotalNumberOfRules() - 1);
+        }
 
+        public long getTotalNumberOfRules()
+        {
+                 int neighborhoodSize = 0;
+                 
+                 for(int i = 0; i < neighborhood.length; i++)
+                 {
+                         neighborhoodSize = neighborhoodSize + ( 2*neighborhood[i] ) + 1;
+                 }
+                 
+                 return (long)pow(ruleSet.getValueDepth(),pow(ruleSet.getValueDepth(),neighborhoodSize));
+
+        }
 }
 
 

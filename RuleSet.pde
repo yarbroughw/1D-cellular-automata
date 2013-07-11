@@ -3,7 +3,7 @@ class RuleSet
 	private IntList ruleValues;
 	private int valueDepth;
 	
-	public RuleSet(int ruleNum, int valueDepth)
+	public RuleSet(long ruleNum, int valueDepth)
 	{
 		this.valueDepth = valueDepth;
 		ruleValues = new IntList();
@@ -12,10 +12,10 @@ class RuleSet
 		// where N = valueDepth, and files digits into
 		// ruleValues in ascending order of significance. 
 		
-		int divisor = ruleNum;
+		long divisor = ruleNum;
 		while(divisor != 0)
 		{
-			int newDigit = (divisor % valueDepth);
+			int newDigit = (int)(divisor % valueDepth);
 			ruleValues.append(newDigit);
 			divisor = (divisor - newDigit) / valueDepth;
 		}
